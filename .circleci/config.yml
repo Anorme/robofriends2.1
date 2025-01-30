@@ -5,7 +5,12 @@ jobs:
       - image: circleci/node:23.6.1
     steps:
       - checkout
-      - run: echo "this is the build job"
+      - run: 
+          name: Install Dependencies
+          command: npm install
+      - run:
+        name: Run Tests
+        command: npm test 
   
   workflows:
     build_and_test:
