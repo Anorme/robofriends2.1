@@ -17,8 +17,8 @@ jobs:
     steps:
       - checkout
       - run: 
-        name: Install Dependencies
-        command: npm install
+          name: Install Dependencies
+          command: npm install
       - run: 
           name: Deploy to GitHub Pages
           command: npm run deploy
