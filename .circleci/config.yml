@@ -11,9 +11,28 @@ jobs:
       - run:
           name: Run Tests
           command: npm test 
+  deploy:
+    docker:
+      - image: cimg/node:23.6.1
+    steps:
+      - checkout
+      - run: 
+          name: Deploy to GitHub Pages
+          command: npm run deploy
+    environment:
+      GIT_DEPLOY_KEY: $GIT_DEPLOY_KEY
   
 workflows:
   version: 2
   build_and_test:
     jobs:
       - build
+
+  deploy:
+    jobs:
+      - deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only: main
